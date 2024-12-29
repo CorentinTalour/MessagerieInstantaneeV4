@@ -1,0 +1,79 @@
+.div-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.left {
+    width: 20%;
+    height: 100vh;
+    background-color: #f1f1f1;
+    padding-left: 2rem;
+    border-right: 1px solid black;
+}
+
+.right {
+    width: 80%;
+    height: 100vh;
+    padding-left: 2rem;
+    background-color: #f1f1f1;
+}
+
+.messaging-app {
+    display: flex;
+    flex-direction: column;
+    height: 98%; /* Prend toute la hauteur disponible */
+}
+
+.messages {
+    flex: 1; /* Prend tout l'espace restant au-dessus de .input-area */
+    padding: 10px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    /*max-width: 70%;*/
+}
+
+.message.sent {
+    background: #e0f7fa;
+    align-self: flex-end;
+}
+
+.message.received {
+    background: #f1f0f0;
+    align-self: flex-start;
+}
+
+.input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.input-area input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+}
+
+.input-area button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.input-area button:hover {
+    background: #0056b3;
+}

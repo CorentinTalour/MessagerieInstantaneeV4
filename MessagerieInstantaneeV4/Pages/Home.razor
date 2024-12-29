@@ -1,0 +1,50 @@
+﻿@page "/"
+@using MessagerieInstantaneeV4.Services
+@inject MessagerieApiService MessagerieService
+
+<PageTitle>Messagerie</PageTitle>
+
+<div class="div-container">
+    <div class="left">
+        <h2>Colonne 1</h2>
+        @if (_users == null || _isLoading)
+        {
+            <p>Chargement</p>
+        }
+        else
+        {
+            @foreach (var user in _users)
+            {
+                <div class="message">
+                    <p>@user.Data.Nom</p>
+                </div>
+            }
+        }
+    </div>
+    <div class="right">
+        <h2>Colonne 2</h2>
+        @* @if (_messages == null || _isLoading == true) *@
+        @* { *@
+        @*     <p>Chargement</p> *@
+        @* } *@
+        @* else *@
+        @* { *@
+        @*     @foreach(var message in _messages) *@
+        @*     { *@
+        @*         <div class="message"> *@
+        @*             <p>@message.Data.Contenu</p> *@
+        @*         </div> *@
+        @*     } *@
+        @* } *@
+        <div class="messaging-app">
+            <div class="messages">
+                <div class="message received">Bonjour ! Comment ça va ?</div>
+                <div class="message sent">Salut ! Je vais bien, merci. Et toi ?</div>
+            </div>
+            <div class="input-area">
+                <input type="text" placeholder="Écrivez un message...">
+                <button @onclick="SendMessage">Envoyer</button>
+            </div>
+        </div>
+    </div>
+</div>
