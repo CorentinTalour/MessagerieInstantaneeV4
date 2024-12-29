@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using MessagerieInstantaneeV4.Objects
 @using MessagerieInstantaneeV4.Services
 @inject MessagerieApiService MessagerieService
 
@@ -23,28 +24,34 @@
     </div>
     <div class="right">
         <h2>Colonne 2</h2>
-        @* @if (_messages == null || _isLoading == true) *@
-        @* { *@
-        @*     <p>Chargement</p> *@
-        @* } *@
-        @* else *@
-        @* { *@
-        @*     @foreach(var message in _messages) *@
-        @*     { *@
-        @*         <div class="message"> *@
-        @*             <p>@message.Data.Contenu</p> *@
-        @*         </div> *@
-        @*     } *@
-        @* } *@
-        <div class="messaging-app">
-            <div class="messages">
-                <div class="message received">Bonjour ! Comment ça va ?</div>
-                <div class="message sent">Salut ! Je vais bien, merci. Et toi ?</div>
+        @if (_sortedMessages == null || _isLoading)
+        {
+            <p>Chargement</p>
+        }
+        else
+        {
+            <div class="messaging-app">
+                <div class="messages">
+                    @foreach (var message in _sortedMessages)
+                    {
+                        <div class="message">
+                            @if (message.SourceList == ListType.SenderMessages)
+                            {
+                                <div class="message sent">@message.MESSAGE</div>
+                            }
+                            else
+                            {
+                                <div class="message received">@message.MESSAGE</div>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="input-area">
+                    <input @bind="_newMessage" type="text" placeholder="Écrivez un message...">
+                    <p>@_newMessage</p>
+                    <button @onclick="SendMessage">Envoyer</button>
+                </div>
             </div>
-            <div class="input-area">
-                <input type="text" placeholder="Écrivez un message...">
-                <button @onclick="SendMessage">Envoyer</button>
-            </div>
-        </div>
+        }
     </div>
 </div>

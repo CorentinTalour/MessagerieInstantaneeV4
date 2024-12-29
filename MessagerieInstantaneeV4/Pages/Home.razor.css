@@ -1,50 +1,55 @@
 .div-container {
     display: flex;
     flex-direction: row;
+    height: 100vh; /* La hauteur totale du conteneur */
 }
 
 .left {
     width: 20%;
-    height: 100vh;
     background-color: #f1f1f1;
     padding-left: 2rem;
     border-right: 1px solid black;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .right {
     width: 80%;
-    height: 100vh;
-    padding-left: 2rem;
     background-color: #f1f1f1;
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* La colonne droite prend toute la hauteur de l'écran */
 }
 
 .messaging-app {
     display: flex;
     flex-direction: column;
-    height: 98%; /* Prend toute la hauteur disponible */
+    flex-grow: 1; /* Permet à la partie messages de prendre tout l'espace restant */
+    overflow: hidden;
+    font-size: 1.6rem;
 }
 
 .messages {
-    flex: 1; /* Prend tout l'espace restant au-dessus de .input-area */
+    flex: 1; /* Occupe tout l'espace restant */
     padding: 10px;
     overflow-y: auto;
     border-bottom: 1px solid #ddd;
 }
 
 .message {
-    margin: 10px 0;
     padding: 10px;
     border-radius: 10px;
     /*max-width: 70%;*/
 }
 
 .message.sent {
-    background: #e0f7fa;
+    background: #A8E6CF;
     align-self: flex-end;
 }
 
 .message.received {
-    background: #f1f0f0;
+    background: #FAF3E0;
     align-self: flex-start;
 }
 
@@ -52,6 +57,8 @@
     display: flex;
     padding: 10px;
     border-top: 1px solid #ddd;
+    position: relative;
+    z-index: 10; /* Assure que l'input-area soit au-dessus du contenu */
 }
 
 .input-area input {
