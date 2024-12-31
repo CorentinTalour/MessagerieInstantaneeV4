@@ -12,6 +12,7 @@
     <link href="manifest.webmanifest" rel="manifest"/>
     <link href="icon-512.png" rel="apple-touch-icon" sizes="512x512"/>
     <link href="icon-192.png" rel="apple-touch-icon" sizes="192x192"/>
+    <script src="site.js"></script>
 </head>
 
 <body>
@@ -22,6 +23,12 @@
     </svg>
     <div class="loading-progress-text"></div>
 </div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script src="firebase.js"></script>
+
 
 <script src="_framework/blazor.webassembly.js"></script>
 <script>navigator.serviceWorker.register('service-worker.js');</script>

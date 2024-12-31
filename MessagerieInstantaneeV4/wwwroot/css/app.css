@@ -7,3 +7,16 @@ html {
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --fond-principal: #2C2F33;
+    --fond-secondaire: #23272A;
+    --texte-principal: #FFFFFF;
+    --texte-secondaire: #B9BBBE;
+    --accent: #B9BBBE;
+    --avertissement: #ED4245;
+    --separateur: #4F545C;
+
+    --bleu-discord: #5865F2;
+    --gris-sombre: #2C2F33;
+}

@@ -8,6 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Google.Apis.Auth" Version="1.68.0"/>
+        <PackageReference Include="Google.Cloud.Firestore" Version="3.9.0"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.11"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.11" PrivateAssets="all"/>
         <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0"/>
@@ -21,6 +23,10 @@
         <_ContentIncludedByDefault Remove="wwwroot\sample-data\weather.json"/>
         <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css"/>
         <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css.map"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="wwwroot\assets\"/>
     </ItemGroup>
 
 </Project>

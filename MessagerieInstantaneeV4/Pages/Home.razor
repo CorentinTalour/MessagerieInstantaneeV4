@@ -1,13 +1,12 @@
 ﻿@page "/"
 @using MessagerieInstantaneeV4.Objects
 @using MessagerieInstantaneeV4.Services
+@inject IJSRuntime JsRuntime
 @inject MessagerieApiService MessagerieService
-
-<PageTitle>Messagerie</PageTitle>
 
 <div class="div-container">
     <div class="left">
-        <h2>Colonne 1</h2>
+        <h2>Liste des contacts</h2>
         @if (_users == null || _isLoading)
         {
             <p>Chargement</p>
@@ -16,14 +15,15 @@
         {
             @foreach (var user in _users)
             {
-                <div class="message">
-                    <p>@user.Data.Nom</p>
+                <div class="list_contact">
+                    <p class="contact">@user.Data.Nom</p>
                 </div>
             }
         }
     </div>
+
     <div class="right">
-        <h2>Colonne 2</h2>
+        <h2>Messagerie</h2>
         @if (_sortedMessages == null || _isLoading)
         {
             <p>Chargement</p>
@@ -37,18 +37,45 @@
                         <div class="message">
                             @if (message.SourceList == ListType.SenderMessages)
                             {
-                                <div class="message sent">@message.MESSAGE</div>
+                                <div class="message sent">
+                                    <div class="container-message">
+                                        <div class="container-picture">
+                                            <img src="assets/avatar-de-personne-icone-homme.png" alt="image homme"
+                                                 class="pp"/>
+                                        </div>
+                                        <div class="container-data">
+                                            <div class="data">
+                                                <p class="nom">@message.IDSENDER</p>
+                                                <p class="date">@DateTime.Parse(message.TIME).ToString("dd/MM/yyyy HH:mm:ss")</p>
+                                            </div>
+                                            <p class="content">@message.MESSAGE</p>
+                                        </div>
+                                    </div>
+                                </div>
                             }
                             else
                             {
-                                <div class="message received">@message.MESSAGE</div>
+                                <div class="message received">
+                                    <div class="container-message">
+                                        <div class="container-picture">
+                                            <img src="assets/avatar-de-personne-icone-femme.png" alt="image femme"
+                                                 class="pp"/>
+                                        </div>
+                                        <div class="container-data">
+                                            <div class="data">
+                                                <p class="nom">@message.IDSENDER</p>
+                                                <p class="date">@DateTime.Parse(message.TIME).ToString("dd/MM/yyyy HH:mm:ss")</p>
+                                            </div>
+                                            <p class="content">@message.MESSAGE</p>
+                                        </div>
+                                    </div>
+                                </div>
                             }
                         </div>
                     }
                 </div>
                 <div class="input-area">
                     <input @bind="_newMessage" type="text" placeholder="Écrivez un message...">
-                    <p>@_newMessage</p>
                     <button @onclick="SendMessage">Envoyer</button>
                 </div>
             </div>
