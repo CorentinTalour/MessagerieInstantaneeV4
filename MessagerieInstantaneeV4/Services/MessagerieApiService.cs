@@ -76,5 +76,23 @@ public class MessagerieApiService
         }
     }
 
+    public async Task SendLogs(Log log)
+    {
+        try
+        {
+            // Utilisation de HttpClient pour une requête POST
+            var response = await _httpClient.PostAsJsonAsync("Log", log);
+
+            response.EnsureSuccessStatusCode();
+
+            //return await response.Content.ReadFromJsonAsync<List<Log>>();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
+            throw;
+        }
+    }
+
     #endregion
 }
