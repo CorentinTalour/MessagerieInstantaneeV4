@@ -47,7 +47,7 @@ public partial class Home
                 await synchroMessage();
                 Console.WriteLine("Synchronisation terminée.");
             }, null, TimeSpan.Zero,
-            TimeSpan.FromSeconds(20)); // Démarre immédiatement, puis se répète toutes les 20 secondes
+            TimeSpan.FromSeconds(5)); // Démarre immédiatement, puis se répète toutes les 20 secondes
     }
 
 
@@ -79,6 +79,8 @@ public partial class Home
 
                     await MessagerieService.SendLogs(log);
                     Console.WriteLine("Log envoyé avec succès");
+
+                    _newMessage = string.Empty;
                 }
                 else
                 {
@@ -87,7 +89,12 @@ public partial class Home
                     await CacheLog(log);
 
                     Console.WriteLine("Message et log mis en cache (hors ligne)");
+
+                    _newMessage = string.Empty;
                 }
+
+                // Forcer Blazor à mettre à jour l'interface (facultatif si nécessaire)
+                StateHasChanged();
             }
             catch (Exception ex)
             {
