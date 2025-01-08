@@ -108,6 +108,12 @@
     font-size: 1.8rem;
 }
 
+container-input-area {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .input-area {
     display: flex;
     padding: 10px;

@@ -89,6 +89,12 @@
                         </div>
                     }
                 </div>
+                <div class="container-input-area">
+                    @if (_isInternetAvailable == false)
+                    {
+                        <p>Vous n'êtes pas connecter à Internet</p>
+                    }
+                </div>
                 <div class="input-area">
                     <input @bind="_newMessage" type="text" placeholder="Écrivez un message...">
                     <button @onclick="SendMessage">Envoyer</button>

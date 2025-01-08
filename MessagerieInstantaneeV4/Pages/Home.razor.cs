@@ -10,6 +10,7 @@ public partial class Home
 {
     private static Timer _messageRetrievalTimer; // Timer pour récupérer les nouveaux messages
     private static FirestoreDb _firestoreDb;
+    private bool _isInternetAvailable;
     private bool _isLoading;
     private string _newMessage = string.Empty;
     private List<Message> _receivedMessages;
@@ -28,6 +29,7 @@ public partial class Home
         _users = await MessagerieService.GetUsers();
         _senderMessages = await MessagerieService.RecevoirMessage("MwxjPF4KW1eikS2IS7J5");
         _receivedMessages = await MessagerieService.RecevoirMessage("fAgNpa3azo0UnP4kgBkH");
+
         CompilationMessage();
 
         _isLoading = false;
@@ -35,16 +37,17 @@ public partial class Home
         // 1. Timer pour vérifier la connexion et envoyer les messages en cache toutes les 5 secondes
         _messageRetrievalTimer = new Timer(async _ =>
         {
-            Console.WriteLine("Vérification de la connexion et envoi des messages en cache...");
-            await CheckAndSendCachedMessages();
+            Console.WriteLine("Vérification de la connexion...");
+            _isInternetAvailable = await IsInternetAvailable();
             Console.WriteLine("Vérification terminée.");
-        }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5)); // Démarre immédiatement, puis se répète toutes les 5 secondes
+        }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5)); // Démarre immédiatement
 
         // 2. Timer pour récupérer les nouveaux messages toutes les 20 secondes
         var messageRetrievalTimer = new Timer(async _ =>
             {
                 Console.WriteLine("Synchronisation des messages...");
                 await synchroMessage();
+                await CheckAndSendCachedMessages();
                 Console.WriteLine("Synchronisation terminée.");
             }, null, TimeSpan.Zero,
             TimeSpan.FromSeconds(5)); // Démarre immédiatement, puis se répète toutes les 20 secondes
